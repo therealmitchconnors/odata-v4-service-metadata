@@ -392,7 +392,7 @@ export class XmlMetadata {
 
             xml.startElement(singletonElement)
                 .addAttribute(name, entitySet.name)
-                .addAttribute(sype, entitySet.type);
+                .addAttribute(sType, entitySet.type);
 
             this.buildAnnotations(xml, entitySet.annotations)
 
