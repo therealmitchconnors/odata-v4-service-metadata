@@ -360,6 +360,7 @@ export class XmlMetadata {
                 .addAttribute(name, entityContainer.name)
 
             this.buildEntitySets(xml, entityContainer.entitySets)
+            this.buildSingletons(xml, entityContainer.singletons)
             this.buildActionImports(xml, entityContainer.actionImports)
             this.buildFunctionImports(xml, entityContainer.functionImports)
 
@@ -376,6 +377,22 @@ export class XmlMetadata {
             xml.startElement(entitySetElement)
                 .addAttribute(name, entitySet.name)
                 .addAttribute(entityType, entitySet.entityType);
+
+            this.buildAnnotations(xml, entitySet.annotations)
+
+            xml.endElementInline();
+        })
+    }
+
+    buildSingletons(xml, singletons) {
+        singletons && singletons.forEach(entitySet => {
+            var singletonElement = xml.declareElement('Singleton');
+            var name = xml.declareAttribute('Name');
+            var sType = xml.declareAttribute('Type')
+
+            xml.startElement(singletonElement)
+                .addAttribute(name, entitySet.name)
+                .addAttribute(sype, entitySet.type);
 
             this.buildAnnotations(xml, entitySet.annotations)
 
